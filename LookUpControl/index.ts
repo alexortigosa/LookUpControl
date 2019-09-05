@@ -1,13 +1,27 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
+import {retriveRecords} from './domain/domain';
+import { render } from 'react-dom';
+import { generateDropDownComponent } from './utils/components';
 
-export class LookUpControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+export class CustomLookUpControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
+
+	/**
+	 * Parameters
+	 */
+	private _xmlInput: string;
+	/**
+	 * Internals vars
+	 */
+	private _context: ComponentFramework.Context<IInputs>;
+	private _notifyOutputChanged: () => void;
+	private _container: HTMLDivElement;
 	/**
 	 * Empty constructor.
 	 */
 	constructor()
 	{
-
+		
 	}
 
 	/**
@@ -21,6 +35,12 @@ export class LookUpControl implements ComponentFramework.StandardControl<IInputs
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{
 		// Add control initialization code
+		this._context = context;
+		this._notifyOutputChanged = notifyOutputChanged;
+		this._container = container;
+		// Assign private vars
+		this._xmlInput = this._context.parameters.fetchUser.formatted ? this._context.parameters.fetchUser.formatted : '';
+		render(generateDropDownComponent(this._xmlInput),this._container)
 	}
 
 
@@ -31,6 +51,8 @@ export class LookUpControl implements ComponentFramework.StandardControl<IInputs
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		// Add code to update control view
+		this._xmlInput = this._context.parameters.fetchUser.formatted ? this._context.parameters.fetchUser.formatted : '';
+		render(generateDropDownComponent(this._xmlInput),this._container)
 	}
 
 	/** 
