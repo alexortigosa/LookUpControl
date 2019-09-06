@@ -45,7 +45,7 @@ export default class CustomDropDown extends React.Component<Props> {
     
       private _onFilterChanged = (filterText: string): Promise<ITag[]> => {
         const {fetchXML} = this.props;
-        return retriveRecords(fetchXML,filterText).then((data) => data.map((item: ITag) => ({ key: item, name: item }),(error:any) => console.log(error)));
+        return retriveRecords(fetchXML,filterText).then((data) => data.map((item: ITag) => ({ key: item.key, name: item.name }),(error:any) => console.log(error)));
       };
     
 }

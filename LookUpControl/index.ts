@@ -40,9 +40,9 @@ export class CustomLookUpControl implements ComponentFramework.StandardControl<I
 		this._notifyOutputChanged = notifyOutputChanged;
 		this._container = container;
 		// Assign private vars
-		this._xmlInput = `<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+		this._xmlInput = `<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" top="10">
 		<entity name="account">
-		  <attribute name="name" alias = "value" />
+		  <attribute name="name" alias = "name" />
 		  <attribute name="accountid" alias = "key"/>
 		  <order attribute="name" descending="false" />
 		  <filter type="and">
