@@ -15,6 +15,19 @@ const dropdownStyles: Partial<IDropdownStyles> = {
     dropdown: { width: 300 }
 };
 
+const options: IDropdownOption[] = [
+    { key: 'fruitsHeader', text: 'Fruits', itemType: DropdownMenuItemType.Header },
+    { key: 'apple', text: 'Apple' },
+    { key: 'banana', text: 'Banana' },
+    { key: 'orange', text: 'Orange', disabled: true },
+    { key: 'grape', text: 'Grape' },
+    { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
+    { key: 'vegetablesHeader', text: 'Vegetables', itemType: DropdownMenuItemType.Header },
+    { key: 'broccoli', text: 'Broccoli' },
+    { key: 'carrot', text: 'Carrot' },
+    { key: 'lettuce', text: 'Lettuce' }
+  ];
+
 export default class CustomDropDown extends React.Component<Props,State> {
     constructor(props: Props){
         super(props);
@@ -23,8 +36,8 @@ export default class CustomDropDown extends React.Component<Props,State> {
 
     async _loadData(){
         const {fetchXML} = this.props;
-        const data = await retriveRecords(fetchXML);
-        this.setState({data});
+        //const data = await retriveRecords(fetchXML);
+        //this.setState({data});
     }
 
     componentDidUpdate(){
@@ -41,9 +54,8 @@ export default class CustomDropDown extends React.Component<Props,State> {
         return (
             <Dropdown 
                 placeholder="Select an option" 
-                label="Basic uncontrolled example"
                 onChange={this._onChange}
-                options={data} 
+                options={options} 
                 styles={dropdownStyles} 
             />
         );

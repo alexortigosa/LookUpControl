@@ -2,8 +2,7 @@
 <manifest>
   <control namespace="AOTECHControls" constructor="CustomLookUpControl" version="0.0.1" display-name-key="AOTECHControls.CustomLookUpControl" description-key="Custom LookUpControl description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="fetchUser" display-name-key="Fetch Field" description-key="Fetch to search -- use @filter@ to replace the value used on the input" of-type="SingleLine.TextArea" usage="bound" required="true" />
-    <property name="targetField" display-name-key="Target Field" description-key="Target field to apply changes" of-type="SingleLine.Text" usage="input" required="true" />
+    <property name="fetchUser" display-name-key="FetchField" description-key="Fetch to search" of-type="SingleLine.Text" usage="bound" required="true" />
     <!-- 
       Property node's of-type attribute can be of-type-group attribute. 
       Example:
