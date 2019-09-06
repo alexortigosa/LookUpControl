@@ -10,6 +10,7 @@ export class CustomLookUpControl implements ComponentFramework.StandardControl<I
 	 * Parameters
 	 */
 	private _xmlInput: string;
+	private _textInput: string;
 	/**
 	 * Internals vars
 	 */
@@ -39,7 +40,17 @@ export class CustomLookUpControl implements ComponentFramework.StandardControl<I
 		this._notifyOutputChanged = notifyOutputChanged;
 		this._container = container;
 		// Assign private vars
-		this._xmlInput = this._context.parameters.fetchUser.formatted ? this._context.parameters.fetchUser.formatted : '';
+		this._xmlInput = `<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+		<entity name="account">
+		  <attribute name="name" alias = "value" />
+		  <attribute name="accountid" alias = "key"/>
+		  <order attribute="name" descending="false" />
+		  <filter type="and">
+			<condition attribute="name" operator="like" value="%@filter@%" />
+		  </filter>
+		</entity>
+	  </fetch>`;
+		this._textInput = this._context.parameters.fetchUser.formatted ? this._context.parameters.fetchUser.formatted : '';
 		render(generateDropDownComponent(this._xmlInput),this._container)
 	}
 
@@ -51,8 +62,6 @@ export class CustomLookUpControl implements ComponentFramework.StandardControl<I
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
 		// Add code to update control view
-		this._xmlInput = this._context.parameters.fetchUser.formatted ? this._context.parameters.fetchUser.formatted : '';
-		render(generateDropDownComponent(this._xmlInput),this._container)
 	}
 
 	/** 
