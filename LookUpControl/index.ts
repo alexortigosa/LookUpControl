@@ -2,6 +2,7 @@ import {IInputs, IOutputs} from "./generated/ManifestTypes";
 import {retriveRecords} from './domain/domain';
 import { render } from 'react-dom';
 import { generateDropDownComponent } from './utils/components';
+import {staticFetch} from './statics/StaticFetch'
 
 export class CustomLookUpControl implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
@@ -10,7 +11,6 @@ export class CustomLookUpControl implements ComponentFramework.StandardControl<I
 	 * Parameters
 	 */
 	private _xmlInput: string;
-	private _textInput: string;
 	/**
 	 * Internals vars
 	 */
@@ -40,17 +40,10 @@ export class CustomLookUpControl implements ComponentFramework.StandardControl<I
 		this._notifyOutputChanged = notifyOutputChanged;
 		this._container = container;
 		// Assign private vars
-		this._xmlInput = `<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false" top="10">
-		<entity name="account">
-		  <attribute name="name" alias = "name" />
-		  <attribute name="accountid" alias = "key"/>
-		  <order attribute="name" descending="false" />
-		  <filter type="and">
-			<condition attribute="name" operator="like" value="%@filter@%" />
-		  </filter>
-		</entity>
-	  </fetch>`;
-		this._textInput = this._context.parameters.fetchUser.formatted ? this._context.parameters.fetchUser.formatted : '';
+		
+		const staticXmlInput = staticFetch;
+	  
+	 	this._xmlInput = this._context.parameters.inputFetch.formatted ? this._context.parameters.inputFetch.formatted : staticXmlInput;
 		render(generateDropDownComponent(this._xmlInput),this._container)
 	}
 

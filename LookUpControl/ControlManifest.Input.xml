@@ -2,7 +2,9 @@
 <manifest>
   <control namespace="AOTECHControls" constructor="CustomLookUpControl" version="0.0.1" display-name-key="AOTECHControls.CustomLookUpControl" description-key="Custom LookUpControl description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="fetchUser" display-name-key="FetchField" description-key="Fetch to search" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="phantomField" display-name-key="PhantomField" description-key="Phantom field to use the component" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="inputFetch" display-name-key="inputFetch" description-key="Fetch to search seted on configuration. Reminder to define the two mandatory properties, aliases with name and key used to build the selector Example: <attribute name='name' alias = 'name' />
+		  <attribute name='accountid' alias = 'key'/>. Is mandatory use the filter expresion @filter@ to on fields where yo want apply conditions. Example: <condition attribute='name' operator='like' value='%@filter@%'' />" of-type="SingleLine.TextArea" usage="input" required="false" />
     <!-- 
       Property node's of-type attribute can be of-type-group attribute. 
       Example:
