@@ -21,13 +21,18 @@ ECHO Previous build deleted
 ECHO Create new build folder
 mkdir %buildCutomControlFolderPath%
 ECHO build npm
-npm run build
+PAUSE
+call npm run build
 ECHO run pac commands
+PAUSE
 cd %buildCutomControlFolderName% 
-pac solution init --publisher-name %PUBLISHER_NAME% --publisher-prefix %PUBLISHER_PREFIX%
-pac solution add-reference --path %ROOT_FOLDER%
+ECHO %CD%
+PAUSE
+call pac solution init --publisher-name %PUBLISHER_NAME% --publisher-prefix %PUBLISHER_PREFIX%
+call pac solution add-reference --path %ROOT_FOLDER%
 msbuild /t:restore
 msbuild
+ECHO PROCESS ENDED
 PAUSE
 
 ENDLOCAL
