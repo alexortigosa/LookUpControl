@@ -29,11 +29,13 @@ cd %buildCutomControlFolderName%
 ECHO %CD%
 PAUSE
 call pac solution init --publisher-name %PUBLISHER_NAME% --publisher-prefix %PUBLISHER_PREFIX%
+PAUSE
 call pac solution add-reference --path %ROOT_FOLDER%
+PAUSE
 msbuild /t:restore
+PAUSE
 msbuild
 ECHO PROCESS ENDED
 PAUSE
 
 ENDLOCAL
-EXIT
